@@ -24,10 +24,6 @@ public class GuiceConfig extends GuiceServletContextListener {
         return Guice.createInjector(new ServletModule() {
             @Override
             protected void configureServlets() {
-
-                Map<String, String> params = new HashMap<>();
-                params.put("applicationClass", ApplicationEntryPoint.class.getName());
-                
                 bind(PrimesCalculationAlgorithm.class).to(EratosthenesPrimesAlgorithm.class);
                 bind(PrimesProcessor.class).to(CachingPrimesProcessor.class);
                 bind(PrimeController.class).toInstance(new PrimeController());
