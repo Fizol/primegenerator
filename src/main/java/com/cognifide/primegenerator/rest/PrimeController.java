@@ -1,6 +1,6 @@
 package com.cognifide.primegenerator.rest;
 
-import com.cognifide.primegenerator.api.PrimeProcessor;
+import com.cognifide.primegenerator.api.PrimesProcessor;
 import com.google.inject.Inject;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class PrimeController {
     
     @Inject
-    PrimeProcessor primeProcessor;
+    PrimesProcessor primeProcessor;
     
     public List<Integer> getPrimes(int to) {
         return primeProcessor.generatePrimes(to);

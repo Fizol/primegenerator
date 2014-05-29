@@ -1,7 +1,9 @@
 package com.cognifide.primegenerator;
 
-import com.cognifide.primegenerator.api.PrimeProcessor;
-import com.cognifide.primegenerator.primes.EratosthenesPrimeProcessor;
+import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
+import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.primes.CachingPrimesProcessor;
+import com.cognifide.primegenerator.primes.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.rest.ApplicationEntryPoint;
 import com.cognifide.primegenerator.rest.PrimeController;
 import com.google.inject.Guice;
@@ -26,7 +28,8 @@ public class GuiceConfig extends GuiceServletContextListener {
                 Map<String, String> params = new HashMap<>();
                 params.put("applicationClass", ApplicationEntryPoint.class.getName());
                 
-                bind(PrimeProcessor.class).to(EratosthenesPrimeProcessor.class);
+                bind(PrimesCalculationAlgorithm.class).to(EratosthenesPrimesAlgorithm.class);
+                bind(PrimesProcessor.class).to(CachingPrimesProcessor.class);
                 bind(PrimeController.class).toInstance(new PrimeController());
                 bind(spark.servlet.SparkApplication.class).to(ApplicationEntryPoint.class);
                 filter("/*").through(GuicySparkFilter.class);
