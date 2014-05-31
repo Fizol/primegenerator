@@ -19,7 +19,6 @@ public class PrimesProcessorIntegrationTest {
 
     @BeforeClass
     public static void setUpClass() {
-        //provide implementation
         CachingPrimesProcessor cachingPrimesProcessor
                 = new CachingPrimesProcessor();
         cachingPrimesProcessor.algorithm = new EratosthenesPrimesAlgorithm();
