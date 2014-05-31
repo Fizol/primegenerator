@@ -11,7 +11,7 @@ import static spark.Spark.*;
 
 /**
  *
- * @author fizol
+ * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
 @Singleton
 public class ApplicationEntryPoint implements SparkApplication {

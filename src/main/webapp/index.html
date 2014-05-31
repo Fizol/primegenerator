@@ -36,6 +36,10 @@ and open the template in the editor.
                     $.ajax({
                         url: "primes/generate/" + $input.val(),
                         success: function(d) {
+                            if(d.length === 0) {
+                                $results.text("No primes!");
+                                return;
+                            }
                             var list = d.reduce(function(chain, val) {
                                 return chain + "<li>" + val + "</li>";
                             }, "");

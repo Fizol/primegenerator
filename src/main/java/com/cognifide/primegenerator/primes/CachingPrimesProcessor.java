@@ -16,7 +16,8 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ExecutionException;
 
 /**
- *
+ * Use caching to do less computing with algorithm. This strategy
+ * costs huge amount of memory.
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
 public class CachingPrimesProcessor implements PrimesProcessor {
@@ -24,6 +25,7 @@ public class CachingPrimesProcessor implements PrimesProcessor {
     @Inject
     PrimesCalculationAlgorithm algorithm;
 
+    // storage for cached keys
     private final ConcurrentSkipListSet<Integer> cachedKeys = new ConcurrentSkipListSet<>();
     private final LoadingCache<Integer, boolean[]> primesCache = CacheBuilder.newBuilder()
             .maximumSize(200)
