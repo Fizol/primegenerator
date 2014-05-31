@@ -17,7 +17,7 @@ public class EratosthenesPrimesAlgorithm implements PrimesCalculationAlgorithm {
      */
     @Override
     public boolean[] getPrimesArray(int to) {
-        checkArgument(to >= 1, "Bound number should be greater than zero!");
+        checkArgument(to >= 1, "Boundary number should be greater than zero!");
         int n = to;
         boolean[] numbersTable = new boolean[n + 1];
         numbersTable[0] = true;

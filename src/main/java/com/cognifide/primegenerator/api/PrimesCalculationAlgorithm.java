@@ -12,5 +12,5 @@ public interface PrimesCalculationAlgorithm {
      * @return booleans array that contains indexes in [0, to] range, and primes
      * are indexes under false values.
      */
-    boolean[] getPrimesArray(int to) throws IllegalArgumentException;
+    boolean[] getPrimesArray(int to);
 }

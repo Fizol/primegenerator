@@ -67,4 +67,12 @@ public class PrimesProcessorIntegrationTest {
         Assert.assertEquals(
                 Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23), exPrimes);
     }
+
+    @Test
+    public void primesTo_58() {
+        List<Integer> exPrimes = primes.generatePrimes(58);
+        Assert.assertEquals(
+                Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 
+                        29, 31, 37, 41, 43, 47, 53), exPrimes);
+    }
 }

@@ -26,13 +26,13 @@ public class CachingPrimesProcessor implements PrimesProcessor {
 
     private final ConcurrentSkipListSet<Integer> cachedKeys = new ConcurrentSkipListSet<>();
     private final LoadingCache<Integer, boolean[]> primesCache = CacheBuilder.newBuilder()
-            .maximumSize(100)
+            .maximumSize(200)
             .removalListener(new PrimesRemovalListener())
             .build(new PrimesCacheLoader());
 
     @Override
     public List<Integer> generatePrimes(int to) {
-        checkArgument(to >= 1, "Bound number should be greater than zero!");
+        checkArgument(to >= 1, "Boundary number should be greater than zero!");
         try {
             return toList(primesCache.get(to));
         } catch (ExecutionException ex) {

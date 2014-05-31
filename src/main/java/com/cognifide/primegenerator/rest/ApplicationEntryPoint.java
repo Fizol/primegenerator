@@ -15,15 +15,35 @@ import static spark.Spark.*;
  */
 @Singleton
 public class ApplicationEntryPoint implements SparkApplication {
-    
+
     @Inject
     PrimeController primeController;
-    
+
     @Override
     public void init() {
+        
         post("/primes/generate/:to", (request, response) -> {
             return primeController.getPrimes(Integer.valueOf(request.params(":to")));
         }, new ResponseIntegerListTransformer());
+
+        after("/primes/generate/:to", (request, response) -> {
+            response.header("Content-type", "application/json");
+        });
+        
+        exception(NumberFormatException.class, (e, request, response) -> {
+            response.status(500);
+            response.body("Given string is not a integer value.");
+        });
+        
+        exception(IllegalArgumentException.class, (e, request, response) -> {
+            response.status(500);
+            response.body(e.getMessage());
+        });
+        
+        exception(RuntimeException.class, (e, request, response) -> {
+            response.status(500);
+            response.body("Internal server error occured!");
+        });
     }
 
     class ResponseIntegerListTransformer implements ResponseTransformer {
