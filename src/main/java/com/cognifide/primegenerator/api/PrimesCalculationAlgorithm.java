@@ -13,4 +13,12 @@ public interface PrimesCalculationAlgorithm {
      * are indexes under false values.
      */
     boolean[] getPrimesArray(int to);
+    
+    /**
+     * 
+     * @param state
+     * @param to
+     * @return 
+     */
+    boolean[] getPrimesArrayFromState(boolean[] state, int to);
 }

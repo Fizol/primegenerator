@@ -1,4 +1,4 @@
-package com.cognifide.primegenerator.primes;
+package com.cognifide.primegenerator.primes.processor;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
@@ -14,6 +14,11 @@ public class NonCachingPrimesProcessor implements PrimesProcessor {
 
     @Inject
     PrimesCalculationAlgorithm algorithm;
+    
+    //for tests
+    public NonCachingPrimesProcessor(PrimesCalculationAlgorithm alg) {
+        this.algorithm = alg;
+    }
     
     @Override
     public List<Integer> generatePrimes(int to) {

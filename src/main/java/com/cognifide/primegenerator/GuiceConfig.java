@@ -2,8 +2,8 @@ package com.cognifide.primegenerator;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
-import com.cognifide.primegenerator.primes.CachingPrimesProcessor;
-import com.cognifide.primegenerator.primes.EratosthenesPrimesAlgorithm;
+import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
+import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.rest.ApplicationEntryPoint;
 import com.cognifide.primegenerator.rest.PrimeController;
 import com.google.inject.Guice;

@@ -1,4 +1,4 @@
-package com.cognifide.primegenerator.primes;
+package com.cognifide.primegenerator.primes.calculation;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import java.util.ArrayList;
@@ -12,16 +12,16 @@ import org.junit.Test;
  *
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
-public class PrimesAlgorithmCommonTest {
+public class PrimesAlgorithmWithStateTest {
 
     PrimesCalculationAlgorithm algorithm = new EratosthenesPrimesAlgorithm();
 
     @Test(expected = IllegalArgumentException.class)
     public void primesTo_negative() {
-        boolean[] primesArray = algorithm.getPrimesArray(-1);
+        boolean[] primesArray = algorithm.getPrimesArrayFromState(new boolean[]{}, -1);
         Assert.assertEquals(Collections.EMPTY_LIST, toList(primesArray));
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void primesTo_0() {
         boolean[] primesArray = algorithm.getPrimesArray(0);

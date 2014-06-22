@@ -1,4 +1,4 @@
-package com.cognifide.primegenerator.primes;
+package com.cognifide.primegenerator.primes.processor;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
@@ -16,14 +16,23 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Use caching to do less computing with algorithm. This strategy
- * costs huge amount of memory.
+ * Use caching to do less computing with algorithm. This strategy costs huge
+ * amount of memory.
+ *
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
 public class CachingPrimesProcessor implements PrimesProcessor {
 
     @Inject
     PrimesCalculationAlgorithm algorithm;
+    
+    CachingPrimesProcessor() {
+    }
+    
+    //for tests
+    public CachingPrimesProcessor(PrimesCalculationAlgorithm alg) {
+        this.algorithm = alg;
+    }
 
     // storage for cached keys
     private final ConcurrentSkipListSet<Integer> cachedKeys = new ConcurrentSkipListSet<>();
@@ -34,8 +43,8 @@ public class CachingPrimesProcessor implements PrimesProcessor {
 
     @Override
     public List<Integer> generatePrimes(int to) {
-        checkArgument(to >= 1, "Boundary number should be greater than zero!");
         try {
+            checkArgument(to >= 1, "Boundary number should be greater than zero!");
             return toList(primesCache.get(to));
         } catch (ExecutionException ex) {
             //logger logs entry

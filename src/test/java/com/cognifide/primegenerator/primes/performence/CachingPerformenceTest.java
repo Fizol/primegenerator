@@ -1,13 +1,18 @@
-package com.cognifide.primegenerator.primes;
+package com.cognifide.primegenerator.primes.performence;
 
+import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
+import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import java.util.Random;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * No asserts needed. Only to see elapsed time.
+ *
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
+@Category(PerformenceCategory.class)
 public class CachingPerformenceTest {
 
     static final int N = 10000;
@@ -26,8 +31,8 @@ public class CachingPerformenceTest {
 
     @Test
     public void cacheProcessor() {
-        CachingPrimesProcessor processor = new CachingPrimesProcessor();
-        processor.algorithm = new EratosthenesPrimesAlgorithm();
+        CachingPrimesProcessor processor
+                = new CachingPrimesProcessor(new EratosthenesPrimesAlgorithm());
         for (int i = 0; i < RANDOMS.length; i++) {
             processor.generatePrimes(RANDOMS[i]);
         }

@@ -1,14 +1,19 @@
-package com.cognifide.primegenerator.primes;
+package com.cognifide.primegenerator.primes.performence;
 
+import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
+import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
 import java.util.Random;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  *
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
-public class NonCachingPerformenceTest {
+@Category(PerformenceCategory.class)
+public class OneCachedArrayPerformenceTest {
+
     static final int N = 10000;
     static final int BOUND = 10000000;
     static int[] RANDOMS;
@@ -25,8 +30,8 @@ public class NonCachingPerformenceTest {
 
     @Test
     public void cacheProcessor() {
-        NonCachingPrimesProcessor processor = new NonCachingPrimesProcessor();
-        processor.algorithm = new EratosthenesPrimesAlgorithm();
+        OneCachedArrayPrimesProcessor processor
+                = new OneCachedArrayPrimesProcessor(new EratosthenesPrimesAlgorithm());
         for (int i = 0; i < RANDOMS.length; i++) {
             processor.generatePrimes(RANDOMS[i]);
         }

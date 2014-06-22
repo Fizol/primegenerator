@@ -1,6 +1,7 @@
-package com.cognifide.primegenerator.primes;
+package com.cognifide.primegenerator.primes.processor;
 
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,22 +10,20 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Some semi integration tests. Maybe need some with timeouts? :)
  *
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
-public class PrimesProcessorIntegrationTest {
-
+public class OneCachedArrayProcessorTest {
     static PrimesProcessor primes;
 
     @BeforeClass
     public static void setUpClass() {
-        CachingPrimesProcessor cachingPrimesProcessor
-                = new CachingPrimesProcessor();
-        cachingPrimesProcessor.algorithm = new EratosthenesPrimesAlgorithm();
-        primes = cachingPrimesProcessor;
+        OneCachedArrayPrimesProcessor oneCachedArray
+                = new OneCachedArrayPrimesProcessor();
+        oneCachedArray.algorithm = new EratosthenesPrimesAlgorithm();
+        primes = oneCachedArray;
     }
-
+    
     @Test(expected = IllegalArgumentException.class)
     public void primesTo_negative() {
         List<Integer> exPrimes = primes.generatePrimes(-1);
