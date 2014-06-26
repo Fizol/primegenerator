@@ -8,6 +8,7 @@ import java.util.List;
  */
 public interface PrimesProcessor {
     
+    public String getName();
     /**
      * 
      * @param to

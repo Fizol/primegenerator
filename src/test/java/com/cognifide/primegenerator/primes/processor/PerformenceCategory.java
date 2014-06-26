@@ -1,4 +1,4 @@
-package com.cognifide.primegenerator.primes.performence;
+package com.cognifide.primegenerator.primes.processor;
 
 /**
  * This tests may take long time, and are perform heavy calculations

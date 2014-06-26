@@ -9,7 +9,7 @@
                 <goal>install</goal>
             </goals>
             <properties>
-                <excludedGroups>com.cognifide.primegenerator.primes.performence.PerformenceCategory</excludedGroups>
+                <excludedGroups>com.cognifide.primegenerator.primes.processor.PerformenceCategory</excludedGroups>
             </properties>
         </action>
         <action>
@@ -22,7 +22,7 @@
                 <goal>install</goal>
             </goals>
             <properties>
-                <excludedGroups>com.cognifide.primegenerator.primes.performence.PerformenceCategory</excludedGroups>
+                <excludedGroups>com.cognifide.primegenerator.primes.processor.PerformenceCategory</excludedGroups>
             </properties>
         </action>
     </actions>

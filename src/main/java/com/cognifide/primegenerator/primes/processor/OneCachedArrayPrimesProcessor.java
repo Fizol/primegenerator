@@ -28,6 +28,11 @@ public class OneCachedArrayPrimesProcessor implements PrimesProcessor {
     private boolean[] primes = new boolean[]{};
     private int max = 0;
 
+    @Override
+    public String getName() {
+        return OneCachedArrayPrimesProcessor.class.getCanonicalName();
+    }
+    
     //happens-before rule!
     @Override
     public List<Integer> generatePrimes(int to) {

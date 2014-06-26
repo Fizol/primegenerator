@@ -25,10 +25,10 @@ public class CachingPrimesProcessor implements PrimesProcessor {
 
     @Inject
     PrimesCalculationAlgorithm algorithm;
-    
+
     CachingPrimesProcessor() {
     }
-    
+
     //for tests
     public CachingPrimesProcessor(PrimesCalculationAlgorithm alg) {
         this.algorithm = alg;
@@ -37,9 +37,14 @@ public class CachingPrimesProcessor implements PrimesProcessor {
     // storage for cached keys
     private final ConcurrentSkipListSet<Integer> cachedKeys = new ConcurrentSkipListSet<>();
     private final LoadingCache<Integer, boolean[]> primesCache = CacheBuilder.newBuilder()
-            .maximumSize(200)
+            .maximumSize(10)
             .removalListener(new PrimesRemovalListener())
             .build(new PrimesCacheLoader());
+
+    @Override
+    public String getName() {
+        return CachingPrimesProcessor.class.getCanonicalName();
+    }
 
     @Override
     public List<Integer> generatePrimes(int to) {

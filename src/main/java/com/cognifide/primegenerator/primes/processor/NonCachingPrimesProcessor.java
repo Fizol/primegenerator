@@ -21,6 +21,11 @@ public class NonCachingPrimesProcessor implements PrimesProcessor {
     }
     
     @Override
+    public String getName() {
+        return NonCachingPrimesProcessor.class.getCanonicalName();
+    }
+    
+    @Override
     public List<Integer> generatePrimes(int to) {
         return toList(algorithm.getPrimesArray(to));
     }
