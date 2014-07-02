@@ -5,6 +5,7 @@ import com.cognifide.primegenerator.api.PrimesProcessor;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
+import com.cognifide.primegenerator.primes.processor.OneCachedListPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.TestCasesSet;
 import com.cognifide.primegenerator.primes.processor.TestCasesSet.Case;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class MultithreadProcessorTest {
         List<Object[]> parameters = new ArrayList<>();
         parameters.add(new Object[]{new OneCachedArrayPrimesProcessor(calculationAlg), casesSet});
         parameters.add(new Object[]{new CachingPrimesProcessor(calculationAlg), casesSet});
+        parameters.add(new Object[]{new OneCachedListPrimesProcessor(calculationAlg), casesSet});
         return parameters;
     }
 

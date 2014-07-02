@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.cognifide.primegenerator.primes.processor.correctness;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
+import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
+import com.cognifide.primegenerator.primes.processor.OneCachedListPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.TestCasesSet;
 import com.cognifide.primegenerator.primes.processor.TestCasesSet.Case;
 import java.util.ArrayList;
@@ -27,13 +23,12 @@ import org.junit.runners.Parameterized.Parameters;
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
 @RunWith(Parameterized.class)
-public class OneCachedArrayProcessorTest {
+public class ProcessorsTest {
     
     static PrimesCalculationAlgorithm calculationAlg = new EratosthenesPrimesAlgorithm();
-    static PrimesProcessor processor = new OneCachedArrayPrimesProcessor(calculationAlg);
     
     @Parameters(name = "primesTo_{0}")
-    public static List<Object[]> getProcessors() {
+    public static List<Object[]> getData() {
         
         TestCasesSet casesSet = new TestCasesSet();
         Collection<Case> cases = casesSet.getCases();
@@ -52,7 +47,22 @@ public class OneCachedArrayProcessorTest {
     public List<Integer> exs;
     
     @Test
-    public void runTest() {
+    public void OneCachedArrayPrimesProcessorTest() {
+        PrimesProcessor processor = new OneCachedArrayPrimesProcessor(calculationAlg);
+        List<Integer> result = processor.generatePrimes(input);
+        Assert.assertEquals(exs, result);
+    }
+    
+    @Test
+    public void OneCachedListPrimesProcessorTest() {
+        PrimesProcessor processor = new OneCachedListPrimesProcessor(calculationAlg);
+        List<Integer> result = processor.generatePrimes(input);
+        Assert.assertEquals(exs, result);
+    }
+    
+    @Test
+    public void CachingPrimesProcessorTest() {
+        PrimesProcessor processor = new CachingPrimesProcessor(calculationAlg);
         List<Integer> result = processor.generatePrimes(input);
         Assert.assertEquals(exs, result);
     }

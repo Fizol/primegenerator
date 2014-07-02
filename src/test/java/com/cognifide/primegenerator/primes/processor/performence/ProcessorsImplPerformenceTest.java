@@ -7,6 +7,7 @@ import com.cognifide.primegenerator.api.PrimesProcessor;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
+import com.cognifide.primegenerator.primes.processor.OneCachedListPrimesProcessor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +33,7 @@ public class ProcessorsImplPerformenceTest {
     public static List<Object[]> getProcessors() {
         return Arrays.asList(new Object[][]{
             {new OneCachedArrayPrimesProcessor(calculationAlg), randomArray.getRandoms()},
+            {new OneCachedListPrimesProcessor(calculationAlg), randomArray.getRandoms()},
             {new CachingPrimesProcessor(calculationAlg), randomArray.getRandoms()}
         });
     }
