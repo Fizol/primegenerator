@@ -53,13 +53,13 @@ public class MultithreadProcessorTest {
     @Test
     public void assertConcurrentTest() throws InterruptedException {
         List<Runnable> runnables = new ArrayList<>();
-        Collection<Case> cases = casesSet.getCases();
+        Collection<Case> cases = casesSet.getRandomSet(24);
         for (Case c : cases) {
             runnables.add(new Runnable() {
                 @Override
                 public void run() {
                     List<Integer> results = processor.generatePrimes(c.input);
-                    assertEquals(c.expectations, results);
+                    assertEquals("Input: " + c.input, c.expectations, results);
                 }
             });
         }

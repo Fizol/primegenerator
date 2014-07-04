@@ -5,9 +5,8 @@ import com.cognifide.primegenerator.api.PrimesProcessor;
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.inject.Inject;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -42,9 +41,11 @@ public class OneCachedListPrimesProcessor implements PrimesProcessor {
         } else {
             synchronized (lock) {
                 boolean[] primesArray = algorithm.getPrimesArray(to);
+                ListIterator<Integer> cachedIterator = cachedPrimes.listIterator(cachedPrimes.size());
+                //maybe it's better add batches than single elements
                 for (int index = max + 1; index <= to; index++) {
                     if (!primesArray[index]) {
-                        cachedPrimes.add(index);
+                        cachedIterator.add(index);
                     }
                 }
                 max = to;

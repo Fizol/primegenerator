@@ -3,6 +3,7 @@ package com.cognifide.primegenerator.primes.processor.correctness;
 import com.cognifide.primegenerator.api.PrimesProcessor;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Assert;

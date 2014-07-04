@@ -25,7 +25,7 @@ public class OneCachedArrayPrimesProcessor implements PrimesProcessor {
     }
     
     private final Object primesLock = new Object();
-    private boolean[] primes = new boolean[]{};
+    private boolean[] cachedPrimes = new boolean[]{};
     private int max = 0;
 
     @Override
@@ -39,20 +39,20 @@ public class OneCachedArrayPrimesProcessor implements PrimesProcessor {
         checkArgument(to >= 1, "Boundary number should be greater than zero!");
         synchronized (primesLock) {
             if (to <= max) {
-                return toList(Arrays.copyOf(primes, to + 1));
+                return rewrite(to);
             } else {
                 //these lines should be atomic
-                primes = algorithm.getPrimesArrayFromState(primes, to);
+                cachedPrimes = algorithm.getPrimesArrayFromState(cachedPrimes, to);
                 max = to;
             }
-            return toList(primes);
+            return rewrite(max);
         }
     }
-
-    private List<Integer> toList(boolean[] table) {
-        ArrayList<Integer> ints = new ArrayList<>();
-        for (int i = 0; i < table.length; i++) {
-            if (!table[i]) {
+    
+    private List<Integer> rewrite(int to) {
+        List<Integer> ints = new ArrayList<>();
+        for (int i = 0; i <= to; i++) {
+            if (!cachedPrimes[i]) {
                 ints.add(i);
             }
         }
