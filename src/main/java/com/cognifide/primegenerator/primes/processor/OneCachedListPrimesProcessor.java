@@ -2,11 +2,14 @@ package com.cognifide.primegenerator.primes.processor;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +36,7 @@ public class OneCachedListPrimesProcessor implements PrimesProcessor {
 
     //don't return references. Maybe return immutable view, or stream?
     @Override
-    public List<Integer> generatePrimes(int to) {
+    public Result generatePrimes(int to) {
         //synchronize on update
         checkArgument(to >= 1, "Boundary number should be greater than zero!");
         if (to <= max) {
@@ -51,19 +54,21 @@ public class OneCachedListPrimesProcessor implements PrimesProcessor {
                 max = to;
 
                 List<Integer> primes = new ArrayList<>(cachedPrimes);
-                return primes;
+                return new Result(primes, "awsome");
             }
         }
     }
 
-    private List<Integer> rewritePrimesCache(int to) {
+    private Result rewritePrimesCache(int to) {
         List<Integer> primes = new ArrayList<>();
-        for (Integer i : cachedPrimes) {
-            if (i > to) {
+        int size = cachedPrimes.size();
+        for(int i = 0; i < size; i++) {
+            Integer prime = cachedPrimes.get(i);
+            if(prime > to) {
                 break;
             }
-            primes.add(i);
+            primes.add(prime);
         }
-        return primes;
+        return new Result(primes, "rewrite");
     }
 }

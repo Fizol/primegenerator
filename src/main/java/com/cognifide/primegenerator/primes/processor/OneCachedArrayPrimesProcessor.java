@@ -2,10 +2,10 @@ package com.cognifide.primegenerator.primes.processor;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.inject.Inject;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,17 +35,17 @@ public class OneCachedArrayPrimesProcessor implements PrimesProcessor {
     
     //happens-before rule!
     @Override
-    public List<Integer> generatePrimes(int to) {
+    public Result generatePrimes(int to) {
         checkArgument(to >= 1, "Boundary number should be greater than zero!");
         synchronized (primesLock) {
             if (to <= max) {
-                return rewrite(to);
+                return new Result(rewrite(to));
             } else {
                 //these lines should be atomic
                 cachedPrimes = algorithm.getPrimesArrayFromState(cachedPrimes, to);
                 max = to;
             }
-            return rewrite(max);
+            return new Result(rewrite(max));
         }
     }
     

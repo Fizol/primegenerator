@@ -2,6 +2,7 @@ package com.cognifide.primegenerator.primes.processor;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -47,10 +48,10 @@ public class CachingPrimesProcessor implements PrimesProcessor {
     }
 
     @Override
-    public List<Integer> generatePrimes(int to) {
+    public Result generatePrimes(int to) {
         try {
             checkArgument(to >= 1, "Boundary number should be greater than zero!");
-            return toList(primesCache.get(to));
+            return new Result(toList(primesCache.get(to)));
         } catch (ExecutionException ex) {
             //logger logs entry
             throw new RuntimeException();

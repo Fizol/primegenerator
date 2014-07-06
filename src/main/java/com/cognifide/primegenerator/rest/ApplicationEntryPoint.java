@@ -23,7 +23,7 @@ public class ApplicationEntryPoint implements SparkApplication {
     public void init() {
         
         post("/primes/generate/:to", (request, response) -> {
-            return primeController.getPrimes(Integer.valueOf(request.params(":to")));
+            return primeController.getPrimes(Integer.valueOf(request.params(":to"))).primes;
         }, new ResponseIntegerListTransformer());
 
         after("/primes/generate/:to", (request, response) -> {

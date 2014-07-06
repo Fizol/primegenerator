@@ -1,8 +1,10 @@
 package com.cognifide.primegenerator.primes.processor.correctness;
 
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
+import static com.cognifide.primegenerator.primes.processor.correctness.OneCachedListArrayProcessorExceptionsTest.primes;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,13 +28,13 @@ public class OneCachedArrayProcessorExceptionsTest {
     
     @Test(expected = IllegalArgumentException.class)
     public void primesTo_negative() {
-        List<Integer> exPrimes = primes.generatePrimes(-1);
-        Assert.assertEquals(Collections.EMPTY_LIST, exPrimes);
+        Result result = primes.generatePrimes(-1);
+        Assert.assertEquals(Collections.EMPTY_LIST, result.primes);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void primesTo_0() {
-        List<Integer> exPrimes = primes.generatePrimes(0);
-        Assert.assertEquals(Collections.EMPTY_LIST, exPrimes);
+        Result result = primes.generatePrimes(0);
+        Assert.assertEquals(Collections.EMPTY_LIST, result.primes);
     }
 }

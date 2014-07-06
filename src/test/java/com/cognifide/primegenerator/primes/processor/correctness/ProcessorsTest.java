@@ -2,6 +2,7 @@ package com.cognifide.primegenerator.primes.processor.correctness;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
@@ -49,21 +50,21 @@ public class ProcessorsTest {
     @Test
     public void OneCachedArrayPrimesProcessorTest() {
         PrimesProcessor processor = new OneCachedArrayPrimesProcessor(calculationAlg);
-        List<Integer> result = processor.generatePrimes(input);
-        Assert.assertEquals(exs, result);
+        Result result = processor.generatePrimes(input);
+        Assert.assertEquals(exs, result.primes);
     }
     
     @Test
     public void OneCachedListPrimesProcessorTest() {
         PrimesProcessor processor = new OneCachedListPrimesProcessor(calculationAlg);
-        List<Integer> result = processor.generatePrimes(input);
-        Assert.assertEquals(exs, result);
+        Result result = processor.generatePrimes(input);
+        Assert.assertEquals(exs, result.primes);
     }
     
     @Test
     public void CachingPrimesProcessorTest() {
         PrimesProcessor processor = new CachingPrimesProcessor(calculationAlg);
-        List<Integer> result = processor.generatePrimes(input);
-        Assert.assertEquals(exs, result);
+        Result result = processor.generatePrimes(input);
+        Assert.assertEquals(exs, result.primes);
     }
 }

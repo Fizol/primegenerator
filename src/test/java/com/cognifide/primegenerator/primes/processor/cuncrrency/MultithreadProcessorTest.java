@@ -2,6 +2,7 @@ package com.cognifide.primegenerator.primes.processor.cuncrrency;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
@@ -58,8 +59,8 @@ public class MultithreadProcessorTest {
             runnables.add(new Runnable() {
                 @Override
                 public void run() {
-                    List<Integer> results = processor.generatePrimes(c.input);
-                    assertEquals("Input: " + c.input, c.expectations, results);
+                    Result result = processor.generatePrimes(c.input);
+                    assertEquals("Input: " + c.input + " " + result.name, c.expectations, result.primes);
                 }
             });
         }

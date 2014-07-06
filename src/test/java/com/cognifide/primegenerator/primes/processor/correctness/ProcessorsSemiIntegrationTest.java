@@ -2,6 +2,7 @@ package com.cognifide.primegenerator.primes.processor.correctness;
 
 import com.cognifide.primegenerator.api.PrimesCalculationAlgorithm;
 import com.cognifide.primegenerator.api.PrimesProcessor;
+import com.cognifide.primegenerator.api.Result;
 import com.cognifide.primegenerator.primes.calculation.EratosthenesPrimesAlgorithm;
 import com.cognifide.primegenerator.primes.processor.CachingPrimesProcessor;
 import com.cognifide.primegenerator.primes.processor.OneCachedArrayPrimesProcessor;
@@ -32,7 +33,7 @@ public class ProcessorsSemiIntegrationTest {
     public static List<Object[]> getData() {
 
         TestCasesSet casesSet = new TestCasesSet();
-        Collection<TestCasesSet.Case> cases = casesSet.getCases();
+        Collection<TestCasesSet.Case> cases = casesSet.getRandomSet(24);
 
         List<Object[]> parameters = new ArrayList<>();
         for(TestCasesSet.Case c : cases) {
@@ -49,20 +50,20 @@ public class ProcessorsSemiIntegrationTest {
 
     @Test
     public void OneCachedArrayPrimesProcessorTest() {
-        List<Integer> result = cachingArrayProcessor.generatePrimes(input);
-        Assert.assertEquals(exs, result);
+        Result result = cachingArrayProcessor.generatePrimes(input);
+        Assert.assertEquals(exs, result.primes);
     }
 
     @Test
     public void OneCachedListPrimesProcessorTest() {
-        List<Integer> result = cachingListProcessor.generatePrimes(input);
-        Assert.assertEquals(exs, result);
+        Result result = cachingListProcessor.generatePrimes(input);
+        Assert.assertEquals(exs, result.primes);
     }
 
     @Test
     public void CachingPrimesProcessorTest() {
-        List<Integer> result = cachingProcessor.generatePrimes(input);
-        Assert.assertEquals(exs, result);
+        Result result = cachingProcessor.generatePrimes(input);
+        Assert.assertEquals(exs, result.primes);
     }
 
 }
