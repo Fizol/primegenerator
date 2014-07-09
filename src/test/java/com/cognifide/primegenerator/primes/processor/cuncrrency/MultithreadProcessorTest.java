@@ -54,7 +54,7 @@ public class MultithreadProcessorTest {
     @Test
     public void assertConcurrentTest() throws InterruptedException {
         List<Runnable> runnables = new ArrayList<>();
-        Collection<Case> cases = casesSet.getRandomSet(24);
+        Collection<Case> cases = casesSet.getRandomSet(30);
         for (Case c : cases) {
             runnables.add(new Runnable() {
                 @Override

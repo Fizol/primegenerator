@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Results
+ * fix tests where code repeats
+ * for thread create instance of new calculation :)
  * @author Maciej Pawlaczyk <pawlaczyk.mm@gmail.com>
  */
 public class OneCachedArrayPrimesProcessor implements PrimesProcessor {
